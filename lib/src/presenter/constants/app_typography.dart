@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-sealed class Typography {
+mixin AppTypography {
   final light = GoogleFonts.ptSans(fontWeight: FontWeight.w300);
   final medium = GoogleFonts.ptSans(fontWeight: FontWeight.w500);
   final bold = GoogleFonts.ptSans(fontWeight: FontWeight.bold);

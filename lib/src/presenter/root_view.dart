@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ifoodtv/src/presenter/pages/onboarding_page.dart';
+
+import 'pages/home_page.dart';
 
 class RootView extends StatefulWidget {
   const RootView({super.key});
@@ -8,8 +12,23 @@ class RootView extends StatefulWidget {
 }
 
 class _RootViewState extends State<RootView> {
+  final _router = GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (context, state) => OnboardingPage(),
+      ),
+      GoRoute(
+        path: '/home',
+        builder: (context, state) => const HomePage(),
+      ),
+    ],
+  );
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp.router(
+      routerConfig: _router,
+    );
   }
 }
