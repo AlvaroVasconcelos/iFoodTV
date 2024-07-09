@@ -1,15 +1,25 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:ifoodtv/src/presenter/constants/app_colors.dart';
 
-class SmallButtonWidget extends StatefulWidget {
-  const SmallButtonWidget({super.key});
+class SmallButtonWidget extends StatelessWidget {
+  const SmallButtonWidget(
+      {super.key, required this.icon, required this.text, required this.onTap});
+  final Widget icon;
+  final Widget text;
+  final VoidCallback onTap;
 
-  @override
-  State<SmallButtonWidget> createState() => _SmallButtonWidgetState();
-}
-
-class _SmallButtonWidgetState extends State<SmallButtonWidget> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        color: AppColors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [icon, text],
+        ),
+      ),
+    );
   }
 }

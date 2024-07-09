@@ -1,15 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 class LogoLargeLettermarkWidget extends StatelessWidget {
-  const LogoLargeLettermarkWidget({super.key, required this.imageUrl});
-  final String imageUrl;
+  const LogoLargeLettermarkWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 18,
+    return Image.asset(
+      "assets/icon_ifood.png",
+      width: 50,
       height: 32,
-      child: Image.network(imageUrl),
     );
   }
 }

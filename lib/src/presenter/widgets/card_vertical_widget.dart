@@ -1,15 +1,23 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class CardVerticalWidget extends StatelessWidget {
-  const CardVerticalWidget({super.key, required this.imageUrl});
+  const CardVerticalWidget({
+    super.key,
+    required this.imageUrl,
+    required this.onTap,
+  });
   final String imageUrl;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 106,
-      height: 152,
-      child: Image.network(imageUrl),
+    return InkWell(
+      onTap: onTap,
+      child: Image.asset(
+        imageUrl,
+        width: 106,
+        height: 152,
+      ),
     );
   }
 }

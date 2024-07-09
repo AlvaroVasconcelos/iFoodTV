@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ifoodtv/src/presenter/pages/onboarding_page.dart';
 
-import 'pages/home_page.dart';
+import 'home_view.dart';
 
 class RootView extends StatefulWidget {
   const RootView({super.key});
@@ -20,7 +20,7 @@ class _RootViewState extends State<RootView> {
       ),
       GoRoute(
         path: '/home',
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => const HomeView(),
       ),
     ],
   );

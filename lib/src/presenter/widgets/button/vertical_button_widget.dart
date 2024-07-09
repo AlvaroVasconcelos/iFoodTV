@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 
-class CardHorizontalWidget extends StatelessWidget {
-  const CardHorizontalWidget({
+class VerticalButtonWidget extends StatelessWidget {
+  const VerticalButtonWidget({
     super.key,
-    required this.imageUrl,
+    required this.icon,
+    required this.text,
     required this.onTap,
   });
 
-  final String imageUrl;
+  final Widget icon;
+  final Widget text;
   final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Image.network(
-        imageUrl,
-        width: 96,
-        height: 54,
+      child: Column(
+        children: [icon, text],
       ),
     );
   }

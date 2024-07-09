@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
 import '../widgets/button/onboard_button_widget.dart';
-import '../widgets/carrousel_widget.dart';
 import '../widgets/logo/logo_wordmark_widget.dart';
 
 class OnboardingPage extends StatelessWidget with AppTypography {
@@ -14,64 +13,74 @@ class OnboardingPage extends StatelessWidget with AppTypography {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Material(
-        color: AppColors.black,
-        child: Column(
+        color: Colors.transparent,
+        child: Stack(
+          alignment: Alignment.center,
           children: [
-            Row(
+            Stack(
               children: [
-                const LogoWordmarkWidget(),
-                const Spacer(),
-                Text(
-                  "Privacy",
-                  style: boldLabel2.copyWith(color: AppColors.white),
+                Image.asset(
+                  "assets/background.jpg",
+                  alignment: Alignment.center,
+                  fit: BoxFit.fitHeight,
+                  height: double.infinity,
                 ),
-                const SizedBox(width: 20),
-                Text(
-                  "Sign in",
-                  style: boldLabel2.copyWith(color: AppColors.white),
+                Container(
+                  color: Colors.black.withOpacity(0.7),
                 ),
-                const SizedBox(width: 20),
               ],
             ),
-            Stack(
-              alignment: Alignment.center,
+            Column(
               children: [
-                CarrouselWidget(
-                  pages: [
-                    Container(
-                      color: AppColors.black,
+                Row(
+                  children: [
+                    const LogoWordmarkWidget(),
+                    const Spacer(),
+                    Text(
+                      "Privacy",
+                      style: boldLabel2.copyWith(color: AppColors.white),
                     ),
-                    Container(
-                      color: AppColors.grey,
+                    const SizedBox(width: 20),
+                    Text(
+                      "Sign in",
+                      style: boldLabel2.copyWith(color: AppColors.white),
                     ),
-                    Container(
-                      color: AppColors.red,
+                    const SizedBox(width: 20),
+                  ],
+                ),
+                const Spacer(),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    //TODO(Vasconcelos.dev) Add images, dots e paralax effect
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Unlimited movies, TV shows, and more.',
+                            style: boldHeader1.copyWith(color: AppColors.white),
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            'Watch anywhere. Cancel anytime. Tap the link below to sign up.',
+                            style: boldLabel1.copyWith(color: AppColors.white),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Unlimited movies, TV shows, and more.',
-                        style: boldHeader1.copyWith(color: AppColors.white),
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        'Watch anywhere. Cancel anytime. Tap the link below to sign up.',
-                        style: boldLabel1.copyWith(color: AppColors.white),
-                      ),
-                    ],
-                  ),
+                const Spacer(),
+                OnboardButtonWidget(
+                  onTap: () {
+                    context.go('/home');
+                  },
                 ),
+                const SizedBox(height: 20)
               ],
-            ),
-            OnboardButtonWidget(
-              onTap: () {
-                context.go('/home');
-              },
             ),
           ],
         ),

@@ -8,7 +8,7 @@ class LogoWordmarkWidget extends StatelessWidget {
     return Image.asset(
       "assets/logo_wordmark.png",
       width: 86,
-      height: 50,
+      height: 70,
     );
   }
 }

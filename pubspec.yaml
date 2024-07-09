@@ -27,3 +27,9 @@ flutter:
   assets:
     - assets/icon_ifood.png
     - assets/logo_wordmark.png
+    - assets/background.jpg
+    - assets/user.png
+    - assets/home_background.png
+    - assets/01carrousel.png
+    - assets/02carrousel.png
+    - assets/03carrousel.png
