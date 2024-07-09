@@ -19,37 +19,6 @@ class _DownloadPageState extends State<DownloadPage> with AppTypography {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: AppColors.black,
-          fixedColor: AppColors.grey,
-          unselectedLabelStyle: boldCaption2,
-          currentIndex: 2,
-          onTap: (index) {},
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: AppColors.grey,
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                color: AppColors.grey,
-              ),
-              label: 'Seach',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.download,
-                color: AppColors.grey,
-              ),
-              label: 'Downloads',
-            ),
-          ],
-        ),
         backgroundColor: AppColors.black,
         body: Column(
           children: [

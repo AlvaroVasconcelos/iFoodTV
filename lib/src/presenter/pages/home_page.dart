@@ -17,36 +17,6 @@ class HomePage extends StatelessWidget with AppTypography {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: AppColors.black,
-          fixedColor: AppColors.grey,
-          unselectedLabelStyle: boldCaption2,
-          onTap: (index) {},
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: AppColors.grey,
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                color: AppColors.grey,
-              ),
-              label: 'Seach',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.download,
-                color: AppColors.grey,
-              ),
-              label: 'Downloads',
-            ),
-          ],
-        ),
         backgroundColor: Colors.transparent,
         body: Stack(
           alignment: Alignment.topCenter,
