@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
-class TrailerView extends StatefulWidget {
+import 'pages/trailer_page.dart';
+
+class TrailerView extends StatelessWidget {
   const TrailerView({super.key});
 
   @override
-  State<TrailerView> createState() => _TrailerViewState();
-}
-
-class _TrailerViewState extends State<TrailerView> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const TrailerPage();
   }
 }

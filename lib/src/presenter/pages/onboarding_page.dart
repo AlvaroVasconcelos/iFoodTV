@@ -76,7 +76,7 @@ class OnboardingPage extends StatelessWidget with AppTypography {
                 const Spacer(),
                 OnboardButtonWidget(
                   onTap: () {
-                    context.go('/home');
+                    context.go('/download');
                   },
                 ),
                 const SizedBox(height: 20)

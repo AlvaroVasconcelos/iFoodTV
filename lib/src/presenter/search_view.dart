@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:ifoodtv/src/presenter/pages/search_page.dart';
 
-class SearchView extends StatefulWidget {
+class SearchView extends StatelessWidget {
   const SearchView({super.key});
 
   @override
-  State<SearchView> createState() => _SearchViewState();
-}
-
-class _SearchViewState extends State<SearchView> {
-  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const SearchPage();
   }
 }

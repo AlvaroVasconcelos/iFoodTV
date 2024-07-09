@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ifoodtv/src/presenter/constants/app_colors.dart';
 import 'package:ifoodtv/src/presenter/constants/app_typography.dart';
 
-class CardHorizontalWidget extends StatelessWidget with AppTypography {
-  CardHorizontalWidget({
+class CardHorizontalDownloadWidget extends StatelessWidget with AppTypography {
+  CardHorizontalDownloadWidget({
     super.key,
     required this.imageUrl,
     required this.onTap,
@@ -21,6 +22,10 @@ class CardHorizontalWidget extends StatelessWidget with AppTypography {
         imageUrl,
         width: 96,
         height: 54,
+      ),
+      trailing: const Icon(
+        Icons.download,
+        color: AppColors.white,
       ),
       title: Text(
         title,
