@@ -1,8 +1,6 @@
 import '../entity/movie.dart';
 import '../error/error.dart';
-
 import '../repository/movie_repository.dart';
-
 import 'result.dart';
 import 'usecase.dart';
 

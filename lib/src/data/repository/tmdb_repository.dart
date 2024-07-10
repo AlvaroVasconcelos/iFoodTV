@@ -1,9 +1,9 @@
+import 'package:tmdb_api/tmdb_api.dart';
+
 import '../../core/entity/movie.dart';
 import '../../core/error/error.dart';
 import '../../core/repository/movie_repository.dart';
 import '../../core/usercase/result.dart';
-import 'package:tmdb_api/tmdb_api.dart';
-
 import '../adapter/movie_adapter.dart';
 import '../client/tmdb_client.dart';
 
