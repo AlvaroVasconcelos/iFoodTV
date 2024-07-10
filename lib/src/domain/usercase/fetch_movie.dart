@@ -1,5 +1,5 @@
 import '../entity/movie.dart';
-import '../core/error.dart';
+import '../core/base_error.dart';
 import '../repository/movie_repository.dart';
 import '../core/result.dart';
 import '../core/usecase.dart';

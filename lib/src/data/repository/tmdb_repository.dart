@@ -1,7 +1,7 @@
 import 'package:tmdb_api/tmdb_api.dart';
 
 import '../../domain/entity/movie.dart';
-import '../../domain/core/error.dart';
+import '../../domain/core/base_error.dart';
 import '../../domain/repository/movie_repository.dart';
 import '../../domain/core/result.dart';
 import '../adapter/movie_adapter.dart';

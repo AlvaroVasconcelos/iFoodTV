@@ -1,4 +1,4 @@
-import 'package:ifoodtv/src/domain/core/error.dart';
+import 'package:ifoodtv/src/domain/core/base_error.dart';
 import 'package:ifoodtv/src/domain/repository/movie_repository.dart';
 import 'package:value_notifier_plus/value_notifier_plus.dart';
 
