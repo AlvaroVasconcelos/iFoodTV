@@ -1,5 +1,5 @@
 import 'package:ifoodtv/src/domain/core/error.dart';
-import 'package:ifoodtv/src/domain/core/repository/movie_repository.dart';
+import 'package:ifoodtv/src/domain/repository/movie_repository.dart';
 import 'package:value_notifier_plus/value_notifier_plus.dart';
 
 import '../../domain/entity/movie.dart';
