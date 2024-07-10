@@ -1,5 +1,5 @@
 import '../entity/movie.dart';
-import '../core/base_error.dart';
+import '../core/base_failure.dart';
 import '../repository/movie_repository.dart';
 import '../core/result.dart';
 import '../core/usecase.dart';
@@ -9,7 +9,7 @@ class SearchMovie implements Usercase<String> {
 
   SearchMovie({required MovieRepository repository}) : _repository = repository;
   @override
-  Future<Result<List<Movie>, BaseError>> execute(term) async {
+  Future<Result<List<Movie>, BaseFailure>> execute(term) async {
     final response = await _repository.searchMovie(term);
     return response.match(
       (value) => Success(value),

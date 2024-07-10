@@ -17,8 +17,8 @@ class HomeView extends StatelessWidget {
         repository: TmdbRepository(
           client: TmdbClient(
             ApiKeys(
-              'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNzZiZTM1MmUyNmRjZTA4NjU5ZmZkYTQyOGY3YjUxNyIsIm5iZiI6MTcyMDQ5Nzc0NS4zNjQ2ODYsInN1YiI6IjY2OGNiNTBkMGViMDZkZDM1ZGYzNTliMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Txc9XPeNXd-sGN75nWnxmvaGPNvWC9T1jou5G6UJsAQ',
-              'apiReadAccessTokenv4',
+              '276be352e26dce08659ffda428f7b517',
+              'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNzZiZTM1MmUyNmRjZTA4NjU5ZmZkYTQyOGY3YjUxNyIsIm5iZiI6MTcyMDYzMTQ1Mi43NDAzOTUsInN1YiI6IjY2OGNiNTBkMGViMDZkZDM1ZGYzNTliMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.emWaTIQwO-HmdHSd2abpfbHQFFNwvvkExvAwacJV1N4',
             ),
           ),
         ),

@@ -1,4 +1,4 @@
-import 'package:ifoodtv/src/domain/core/base_error.dart';
+import 'package:ifoodtv/src/domain/core/base_failure.dart';
 import 'package:ifoodtv/src/domain/repository/movie_repository.dart';
 import 'package:value_notifier_plus/value_notifier_plus.dart';
 
@@ -8,18 +8,18 @@ abstract class HomePageState {}
 
 class HomePageInitialState extends HomePageState {}
 
-class HomePageLoadingState extends HomePageState {}
+class HomePageInProgressState extends HomePageState {}
 
-class HomePageLoadedState extends HomePageState {
+class HomePageSuccessState extends HomePageState {
   final List<Movie> movies;
 
-  HomePageLoadedState({required this.movies});
+  HomePageSuccessState({required this.movies});
 }
 
-class HomePageErrorState extends HomePageState {
-  final BaseError error;
+class HomePageFailureState extends HomePageState {
+  final BaseFailure error;
 
-  HomePageErrorState({required this.error});
+  HomePageFailureState({required this.error});
 }
 
 class HomeBloc extends ValueNotifierPlus<HomePageState> {
@@ -31,16 +31,19 @@ class HomeBloc extends ValueNotifierPlus<HomePageState> {
       HomeBloc(HomePageInitialState(), repository: repository);
 
   void fetchMovies() {
-    value = HomePageLoadingState();
+    value = HomePageInProgressState();
     _repository.getMovies().then((result) {
-      result.match((movies) {
-        value = HomePageLoadedState(movies: movies);
-      }, (error) {
-        value = HomePageErrorState(error: error);
-      });
+      result.match(
+        (movies) {
+          value = HomePageSuccessState(movies: movies);
+        },
+        (error) {
+          value = HomePageFailureState(error: error);
+        },
+      );
     }).catchError((error) {
-      value = HomePageErrorState(
-        error: MovieError(
+      value = HomePageFailureState(
+        error: MovieFailure(
           code: 'HomeBloc',
           description: 'fetchMovies.catchError: $error',
         ),

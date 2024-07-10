@@ -16,6 +16,7 @@ dependencies:
   value_notifier_plus: ^0.1.0+5 # Alternativa leve ao cubit
   go_router: ^14.2.0
   tmdb_api: ^2.2.0
+  logging: ^1.2.0
 
 dev_dependencies:
   flutter_test:

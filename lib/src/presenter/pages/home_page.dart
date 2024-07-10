@@ -142,10 +142,10 @@ class _HomePageState extends State<HomePage> with AppTypography {
                       builder: (context, state) {
                         return switch (state) {
                           HomePageInitialState() => const SizedBox.shrink(),
-                          HomePageLoadingState() => const Center(
+                          HomePageInProgressState() => const Center(
                               child: CircularProgressIndicator(),
                             ),
-                          HomePageLoadedState() => ListView.separated(
+                          HomePageSuccessState() => ListView.separated(
                               padding: EdgeInsets.zero,
                               scrollDirection: Axis.horizontal,
                               itemCount: state.movies.length,
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> with AppTypography {
                                 );
                               },
                             ),
-                          HomePageErrorState() => Center(
+                          HomePageFailureState() => Center(
                               child: Text(state.error.description),
                             ),
                           HomePageState() => const Center(

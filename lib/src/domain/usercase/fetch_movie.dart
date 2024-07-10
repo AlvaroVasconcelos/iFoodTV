@@ -1,5 +1,5 @@
 import '../entity/movie.dart';
-import '../core/base_error.dart';
+import '../core/base_failure.dart';
 import '../repository/movie_repository.dart';
 import '../core/result.dart';
 import '../core/usecase.dart';
@@ -9,7 +9,7 @@ class FetchMovie implements Usercase<String> {
 
   FetchMovie({required MovieRepository repository}) : _repository = repository;
   @override
-  Future<Result<Movie, BaseError>> execute(id) async {
+  Future<Result<Movie, BaseFailure>> execute(id) async {
     final response = await _repository.getMovie(id);
     return response.match(
       (value) => Success(value),
