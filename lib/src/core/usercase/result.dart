@@ -20,7 +20,7 @@ sealed class Result<S extends Object, F extends Object> {
   /// Returns the result of onSuccess for the encapsulated value
   /// if this instance represents `Success` or the result of onError function
   /// for the encapsulated value if it is `Failure`.
-  W fold<W>(
+  W match<W>(
     W Function(S success) onSuccess,
     W Function(F failure) onFailure,
   );
@@ -75,7 +75,7 @@ class Success<S extends Object, F extends Object> implements Result<S, F> {
   }
 
   @override
-  W fold<W>(
+  W match<W>(
     W Function(S success) onSuccess,
     W Function(F error) onFailure,
   ) {
@@ -127,7 +127,7 @@ class Failure<S extends Object, F extends Object> implements Result<S, F> {
       other is Failure && other._failure == _failure;
 
   @override
-  W fold<W>(
+  W match<W>(
     W Function(S succcess) onSuccess,
     W Function(F failure) onFailure,
   ) {

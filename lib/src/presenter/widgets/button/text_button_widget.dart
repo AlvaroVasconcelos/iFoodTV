@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ifoodtv/src/presenter/constants/app_colors.dart';
-import 'package:ifoodtv/src/presenter/constants/app_typography.dart';
+
+import '../../constants/app_colors.dart';
+import '../../constants/app_typography.dart';
 
 class TextButtonWidget extends StatelessWidget with AppTypography {
   TextButtonWidget({super.key, required this.label, required this.onTap});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ifoodtv/src/presenter/widgets/card_horizontal_widget.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
+import '../widgets/card_horizontal_widget.dart';
 import '../widgets/input_field_widget.dart';
 
 class SearchPage extends StatefulWidget {

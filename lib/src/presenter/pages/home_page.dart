@@ -32,44 +32,38 @@ class HomePage extends StatelessWidget with AppTypography {
             ),
             Column(
               children: [
-                Container(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          const LogoLargeLettermarkWidget(),
-                          const Spacer(),
-                          IconButtonWidget(
-                              icon: const Icon(
-                                Icons.cast,
-                                color: AppColors.white,
-                              ),
-                              onTap: () {}),
-                          const SizedBox(width: 20),
-                          UserButtonWidget(onTap: () {}),
-                          const SizedBox(width: 20),
-                        ],
-                      ),
-                      const SizedBox(height: 40),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TextButtonWidget(
-                            label: "Tv Shows",
-                            onTap: () {},
-                          ),
-                          TextButtonWidget(
-                            label: "Movies",
-                            onTap: () {},
-                          ),
-                          TextButtonWidget(
-                            label: "Categories",
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                Row(
+                  children: [
+                    const LogoLargeLettermarkWidget(),
+                    const Spacer(),
+                    IconButtonWidget(
+                        icon: const Icon(
+                          Icons.cast,
+                          color: AppColors.white,
+                        ),
+                        onTap: () {}),
+                    const SizedBox(width: 20),
+                    UserButtonWidget(onTap: () {}),
+                    const SizedBox(width: 20),
+                  ],
+                ),
+                const SizedBox(height: 40),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButtonWidget(
+                      label: "Tv Shows",
+                      onTap: () {},
+                    ),
+                    TextButtonWidget(
+                      label: "Movies",
+                      onTap: () {},
+                    ),
+                    TextButtonWidget(
+                      label: "Categories",
+                      onTap: () {},
+                    ),
+                  ],
                 ),
                 const Spacer(),
                 Center(

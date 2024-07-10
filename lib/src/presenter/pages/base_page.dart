@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ifoodtv/src/presenter/constants/app_typography.dart';
 
 import '../constants/app_colors.dart';
+import '../constants/app_typography.dart';
 
 class BasePage extends StatelessWidget with AppTypography {
   BasePage({super.key, required this.navigationShell});

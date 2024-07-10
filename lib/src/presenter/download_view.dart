@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ifoodtv/src/presenter/pages/download_page.dart';
+
+import 'pages/download_page.dart';
 
 class DownloadView extends StatelessWidget {
   const DownloadView({super.key});

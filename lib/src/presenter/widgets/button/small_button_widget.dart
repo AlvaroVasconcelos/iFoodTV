@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ifoodtv/src/presenter/constants/app_colors.dart';
+
+import '../../constants/app_colors.dart';
 
 class SmallButtonWidget extends StatelessWidget {
   const SmallButtonWidget(

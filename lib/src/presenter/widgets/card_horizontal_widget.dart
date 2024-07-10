@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ifoodtv/src/presenter/constants/app_typography.dart';
+
+import '../constants/app_typography.dart';
 
 class CardHorizontalWidget extends StatelessWidget with AppTypography {
   CardHorizontalWidget({

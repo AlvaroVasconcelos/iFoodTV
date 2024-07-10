@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ifoodtv/src/presenter/pages/search_page.dart';
+
+import 'pages/search_page.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:ifoodtv/src/presenter/constants/app_typography.dart';
 
 import '../constants/app_colors.dart';
+import '../constants/app_typography.dart';
 import '../widgets/card_horizontal_download_widget.dart';
 import '../widgets/input_field_widget.dart';
 
