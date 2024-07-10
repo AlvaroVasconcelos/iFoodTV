@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
 import '../widgets/button/onboard_button_widget.dart';
 import '../widgets/logo/logo_wordmark_widget.dart';
@@ -38,12 +37,12 @@ class OnboardingPage extends StatelessWidget with AppTypography {
                     const Spacer(),
                     Text(
                       "Privacy",
-                      style: boldLabel2.copyWith(color: AppColors.white),
+                      style: boldLabel2,
                     ),
                     const SizedBox(width: 20),
                     Text(
                       "Sign in",
-                      style: boldLabel2.copyWith(color: AppColors.white),
+                      style: boldLabel2,
                     ),
                     const SizedBox(width: 20),
                   ],
@@ -52,8 +51,6 @@ class OnboardingPage extends StatelessWidget with AppTypography {
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    //TODO(Vasconcelos.dev) Add images, dots e paralax effect
-
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
@@ -61,12 +58,12 @@ class OnboardingPage extends StatelessWidget with AppTypography {
                         children: [
                           Text(
                             'Unlimited movies, TV shows, and more.',
-                            style: boldHeader1.copyWith(color: AppColors.white),
+                            style: boldHeader1,
                           ),
                           const SizedBox(height: 20),
                           Text(
                             'Watch anywhere. Cancel anytime. Tap the link below to sign up.',
-                            style: boldLabel1.copyWith(color: AppColors.white),
+                            style: boldLabel1,
                           ),
                         ],
                       ),

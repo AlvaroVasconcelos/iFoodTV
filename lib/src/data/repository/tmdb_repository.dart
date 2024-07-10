@@ -1,9 +1,9 @@
 import 'package:tmdb_api/tmdb_api.dart';
 
-import '../../core/entity/movie.dart';
-import '../../core/error/error.dart';
-import '../../core/repository/movie_repository.dart';
-import '../../core/usercase/result.dart';
+import '../../domain/entity/movie.dart';
+import '../../domain/core/error.dart';
+import '../../domain/core/repository/movie_repository.dart';
+import '../../domain/core/result.dart';
 import '../adapter/movie_adapter.dart';
 import '../client/tmdb_client.dart';
 
@@ -21,7 +21,7 @@ class TmdbRepository extends MovieRepository {
   TmdbRepository({required TmdbClient client}) : _client = client;
 
   @override
-  Future<Result<List<Movie>, BaseError>> getAllMovie() async {
+  Future<Result<List<Movie>, BaseError>> getMovies() async {
     final response = await _client.v3.discover.getMovies();
     final movies = MovieAdapter.fromJsonList(
       response['data'] as Map<String, dynamic>,

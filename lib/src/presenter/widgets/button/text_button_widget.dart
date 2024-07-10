@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/app_colors.dart';
 import '../../constants/app_typography.dart';
 
 class TextButtonWidget extends StatelessWidget with AppTypography {
@@ -13,7 +12,7 @@ class TextButtonWidget extends StatelessWidget with AppTypography {
     return InkWell(
       child: Text(
         label,
-        style: boldLabel3.copyWith(color: AppColors.white),
+        style: boldLabel3,
       ),
     );
   }

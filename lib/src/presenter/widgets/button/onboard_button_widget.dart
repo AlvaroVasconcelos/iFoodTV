@@ -18,7 +18,7 @@ class OnboardButtonWidget extends StatelessWidget with AppTypography {
         child: Center(
           child: Text(
             'Get Started',
-            style: boldLabel2.copyWith(color: AppColors.white),
+            style: boldLabel2,
           ),
         ),
       ),

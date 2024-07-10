@@ -1,8 +1,8 @@
 import '../entity/movie.dart';
-import '../error/error.dart';
-import '../repository/movie_repository.dart';
-import 'result.dart';
-import 'usecase.dart';
+import '../core/error.dart';
+import '../core/repository/movie_repository.dart';
+import '../core/result.dart';
+import '../core/usecase.dart';
 
 class FetchMovie implements Usercase<String> {
   final MovieRepository _repository;

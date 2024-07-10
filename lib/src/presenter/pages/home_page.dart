@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:value_notifier_plus/value_notifier_plus.dart';
 
+import '../blocs/home_bloc.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
 import '../widgets/button/icon_button_widget.dart';
@@ -15,6 +17,7 @@ class HomePage extends StatelessWidget with AppTypography {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = ValueNotifierPlusProvider.of<HomeBloc>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -37,13 +40,16 @@ class HomePage extends StatelessWidget with AppTypography {
                     const LogoLargeLettermarkWidget(),
                     const Spacer(),
                     IconButtonWidget(
-                        icon: const Icon(
-                          Icons.cast,
-                          color: AppColors.white,
-                        ),
-                        onTap: () {}),
+                      icon: const Icon(
+                        Icons.cast,
+                        color: AppColors.white,
+                      ),
+                      onTap: () {},
+                    ),
                     const SizedBox(width: 20),
-                    UserButtonWidget(onTap: () {}),
+                    UserButtonWidget(
+                      onTap: () {},
+                    ),
                     const SizedBox(width: 20),
                   ],
                 ),
@@ -69,7 +75,7 @@ class HomePage extends StatelessWidget with AppTypography {
                 Center(
                   child: Text(
                     "Exciting - Reality TV - Competition",
-                    style: boldLabel2.copyWith(color: AppColors.white),
+                    style: boldLabel2,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -83,7 +89,7 @@ class HomePage extends StatelessWidget with AppTypography {
                       ),
                       text: Text(
                         'My List',
-                        style: mediumCaption1.copyWith(color: AppColors.white),
+                        style: mediumCaption1,
                       ),
                       onTap: () {},
                     ),
@@ -105,7 +111,7 @@ class HomePage extends StatelessWidget with AppTypography {
                       ),
                       text: Text(
                         'Info',
-                        style: mediumCaption1.copyWith(color: AppColors.white),
+                        style: mediumCaption1,
                       ),
                       onTap: () {},
                     )
@@ -115,33 +121,49 @@ class HomePage extends StatelessWidget with AppTypography {
                   alignment: Alignment.bottomLeft,
                   child: Text(
                     "Continue Watching for Vasconcelos.dev",
-                    style: boldLabel2.copyWith(color: AppColors.white),
+                    style: boldLabel2,
                   ),
                 ),
                 SizedBox(
                   height: 212,
-                  child: ListView(
-                    padding: EdgeInsets.zero,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      CardVerticalWidget(
-                        imageUrl: "assets/01carrousel.png",
-                        onTap: () {},
-                      ),
-                      CardVerticalWidget(
-                        imageUrl: "assets/02carrousel.png",
-                        onTap: () {},
-                      ),
-                      CardVerticalWidget(
-                        imageUrl: "assets/03carrousel.png",
-                        onTap: () {},
-                      ),
-                      CardVerticalWidget(
-                        imageUrl: "assets/01carrousel.png",
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
+                  child: ValueNotifierPlusBuilder<HomeBloc, HomePageState>(
+                      notifier: bloc,
+                      builder: (context, state) {
+                        return switch (state) {
+                          HomePageInitialState() => const SizedBox.shrink(),
+                          HomePageLoadingState() => const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          HomePageLoadedState() => ListView(
+                              padding: EdgeInsets.zero,
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                CardVerticalWidget(
+                                  imageUrl: "assets/01carrousel.png",
+                                  onTap: () {},
+                                ),
+                                CardVerticalWidget(
+                                  imageUrl: "assets/02carrousel.png",
+                                  onTap: () {},
+                                ),
+                                CardVerticalWidget(
+                                  imageUrl: "assets/03carrousel.png",
+                                  onTap: () {},
+                                ),
+                                CardVerticalWidget(
+                                  imageUrl: "assets/01carrousel.png",
+                                  onTap: () {},
+                                ),
+                              ],
+                            ),
+                          HomePageErrorState() => Center(
+                              child: Text(state.error.description),
+                            ),
+                          HomePageState() => const Center(
+                              child: Text('Unknown state'),
+                            ),
+                        };
+                      }),
                 )
               ],
             ),

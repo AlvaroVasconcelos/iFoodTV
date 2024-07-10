@@ -1,4 +1,4 @@
-import 'entity.dart';
+import '../core/entity.dart';
 
 class Movie extends Entity {
   final String id;

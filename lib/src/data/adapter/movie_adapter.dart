@@ -1,4 +1,4 @@
-import '../../core/entity/movie.dart';
+import '../../domain/entity/movie.dart';
 
 sealed class MovieAdapter {
   static Movie fromJson(Map<String, dynamic> data) {

@@ -1,15 +1,45 @@
+import 'package:ifoodtv/src/domain/core/error.dart';
+import 'package:ifoodtv/src/domain/core/repository/movie_repository.dart';
 import 'package:value_notifier_plus/value_notifier_plus.dart';
+
+import '../../domain/entity/movie.dart';
 
 abstract class HomePageState {}
 
-class HomePageInitial extends HomePageState {}
+class HomePageInitialState extends HomePageState {}
 
-class HomePageLoading extends HomePageState {}
+class HomePageLoadingState extends HomePageState {}
 
-class HomePageLoaded extends HomePageState {}
+class HomePageLoadedState extends HomePageState {
+  final List<Movie> movies;
 
-class HomePageError extends HomePageState {}
+  HomePageLoadedState({required this.movies});
+}
+
+class HomePageErrorState extends HomePageState {
+  final BaseError error;
+
+  HomePageErrorState({required this.error});
+}
 
 class HomeBloc extends ValueNotifierPlus<HomePageState> {
-  HomeBloc(super.initialState);
+  final MovieRepository _repository;
+  HomeBloc(super.initialState, {required MovieRepository repository})
+      : _repository = repository;
+
+  factory HomeBloc.initial({required MovieRepository repository}) =>
+      HomeBloc(HomePageInitialState(), repository: repository);
+
+  void fetchMovies() {
+    value = HomePageLoadingState();
+    _repository.getMovies().then((result) {
+      result.match((movies) {
+        value = HomePageLoadedState(movies: movies);
+      }, (error) {
+        value = HomePageErrorState(error: error);
+      });
+    }).catchError((error) {
+      value = HomePageErrorState(error: error);
+    });
+  }
 }

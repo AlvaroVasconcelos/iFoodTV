@@ -1,5 +1,5 @@
 name: ifoodtv
-description: "A new streaming project."
+description: "A new POC streaming project."
 
 publish_to: 'none'
 version: 1.0.0+1
@@ -11,10 +11,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.6
   google_fonts: ^6.2.1
   equatable: ^2.0.5
-  value_notifier_plus: ^0.1.0+2 # Alternativa mais leve ao cubit
+  value_notifier_plus: ^0.1.0+2 # Alternativa leve ao cubit
   go_router: ^14.2.0
   tmdb_api: ^2.2.0
 
