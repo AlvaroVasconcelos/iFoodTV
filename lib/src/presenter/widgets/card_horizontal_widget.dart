@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ifoodtv/src/presenter/widgets/transparent_image.dart';
 
 import '../constants/app_typography.dart';
 
@@ -18,11 +19,17 @@ class CardHorizontalWidget extends StatelessWidget with AppTypography {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(
-        imageUrl,
-        width: 96,
-        height: 54,
-      ),
+      leading: imageUrl.isNotEmpty
+          ? Image.network(
+              imageUrl,
+              width: 96,
+              height: 54,
+            )
+          : Image.memory(
+              kTransparentImage,
+              width: 96,
+              height: 54,
+            ),
       title: Text(
         title,
         style: boldCaption1,
@@ -30,6 +37,7 @@ class CardHorizontalWidget extends StatelessWidget with AppTypography {
       subtitle: Text(
         description,
         style: lightCaption1,
+        maxLines: 3,
       ),
     );
   }

@@ -34,11 +34,17 @@ sealed class MovieAdapter {
     }
   }
 
-  static String addBackdropBaseUrl(String url) {
+  static String addBackdropBaseUrl(String? url) {
+    if (url == null) {
+      return '';
+    }
     return 'https://image.tmdb.org/t/p/original$url';
   }
 
-  static String addPosterBaseUrl(String url) {
+  static String addPosterBaseUrl(String? url) {
+    if (url == null) {
+      return '';
+    }
     return 'https://image.tmdb.org/t/p/w500$url';
   }
 }

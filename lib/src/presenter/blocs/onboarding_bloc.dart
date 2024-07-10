@@ -4,11 +4,11 @@ abstract class OnboardingPageState {}
 
 class OnboardingPageInitial extends OnboardingPageState {}
 
-class OnboardingPageLoading extends OnboardingPageState {}
+class OnboardingPageInProgress extends OnboardingPageState {}
 
-class OnboardingPageLoaded extends OnboardingPageState {}
+class OnboardingPageSuccess extends OnboardingPageState {}
 
-class OnboardingPageError extends OnboardingPageState {}
+class OnboardingPageFailure extends OnboardingPageState {}
 
 class OnboardingBloc extends ValueNotifierPlus<OnboardingPageState> {
   OnboardingBloc(super.initialState);

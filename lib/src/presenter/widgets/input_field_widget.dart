@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class InputFieldWidget extends StatefulWidget {
-  const InputFieldWidget({super.key});
+  const InputFieldWidget({super.key, required this.onChanged});
+
+  final void Function(String)? onChanged;
 
   @override
   State<InputFieldWidget> createState() => _InputFieldWidgetState();
@@ -24,6 +26,7 @@ class _InputFieldWidgetState extends State<InputFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: widget.onChanged,
       controller: controller,
       decoration: const InputDecoration(
         isDense: true,

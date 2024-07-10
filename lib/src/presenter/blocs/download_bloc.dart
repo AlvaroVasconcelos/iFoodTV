@@ -4,11 +4,11 @@ abstract class DownloadPageState {}
 
 class DownloadPageInitial extends DownloadPageState {}
 
-class DownloadPageLoading extends DownloadPageState {}
+class DownloadPageInProgress extends DownloadPageState {}
 
-class DownloadPageLoaded extends DownloadPageState {}
+class DownloadPageSuccess extends DownloadPageState {}
 
-class DownloadPageError extends DownloadPageState {}
+class DownloadPageFailure extends DownloadPageState {}
 
 class DownloadBloc extends ValueNotifierPlus<DownloadPageState> {
   DownloadBloc(super.initialState);

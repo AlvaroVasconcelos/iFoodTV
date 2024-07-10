@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ifoodtv/src/presenter/widgets/transparent_image.dart';
 
 class CardVerticalWidget extends StatelessWidget {
   const CardVerticalWidget({
@@ -13,11 +14,17 @@ class CardVerticalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Image.network(
-        imageUrl,
-        width: 106,
-        height: 152,
-      ),
+      child: imageUrl.isNotEmpty
+          ? Image.network(
+              imageUrl,
+              width: 106,
+              height: 152,
+            )
+          : Image.memory(
+              kTransparentImage,
+              width: 106,
+              height: 152,
+            ),
     );
   }
 }

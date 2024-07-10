@@ -21,7 +21,9 @@ class _DownloadPageState extends State<DownloadPage> with AppTypography {
         backgroundColor: AppColors.black,
         body: Column(
           children: [
-            const InputFieldWidget(),
+            InputFieldWidget(
+              onChanged: (term) {},
+            ),
             const SizedBox(height: 20),
             SizedBox(
               height: MediaQuery.sizeOf(context).height * 0.75,

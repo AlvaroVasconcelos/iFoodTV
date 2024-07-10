@@ -4,11 +4,11 @@ abstract class TrailerState {}
 
 class TrailerInitial extends TrailerState {}
 
-class TrailerLoading extends TrailerState {}
+class TrailerInProgress extends TrailerState {}
 
-class TrailerLoaded extends TrailerState {}
+class TrailerSuccess extends TrailerState {}
 
-class TrailerError extends TrailerState {}
+class TrailerFailure extends TrailerState {}
 
 class TrailerBloc extends ValueNotifierPlus<TrailerState> {
   TrailerBloc(super.initialState);

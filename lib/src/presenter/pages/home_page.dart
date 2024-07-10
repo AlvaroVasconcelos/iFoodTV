@@ -138,14 +138,14 @@ class _HomePageState extends State<HomePage> with AppTypography {
                 SizedBox(
                   height: 212,
                   child: ValueNotifierPlusBuilder<HomeBloc, HomePageState>(
-                      notifier: context.of<HomeBloc>()!,
+                      notifier: widget.bloc,
                       builder: (context, state) {
                         return switch (state) {
-                          HomePageInitialState() => const SizedBox.shrink(),
-                          HomePageInProgressState() => const Center(
+                          HomePageInitial() => const SizedBox.shrink(),
+                          HomePageInProgress() => const Center(
                               child: CircularProgressIndicator(),
                             ),
-                          HomePageSuccessState() => ListView.separated(
+                          HomePageSuccess() => ListView.separated(
                               padding: EdgeInsets.zero,
                               scrollDirection: Axis.horizontal,
                               itemCount: state.movies.length,
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> with AppTypography {
                                 );
                               },
                             ),
-                          HomePageFailureState() => Center(
+                          HomePageFailure() => Center(
                               child: Text(state.error.description),
                             ),
                           HomePageState() => const Center(

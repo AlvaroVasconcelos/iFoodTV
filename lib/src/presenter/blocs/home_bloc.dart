@@ -6,20 +6,20 @@ import '../../domain/repository/movie_repository.dart';
 
 abstract class HomePageState {}
 
-class HomePageInitialState extends HomePageState {}
+class HomePageInitial extends HomePageState {}
 
-class HomePageInProgressState extends HomePageState {}
+class HomePageInProgress extends HomePageState {}
 
-class HomePageSuccessState extends HomePageState {
+class HomePageSuccess extends HomePageState {
   final List<Movie> movies;
 
-  HomePageSuccessState({required this.movies});
+  HomePageSuccess({required this.movies});
 }
 
-class HomePageFailureState extends HomePageState {
+class HomePageFailure extends HomePageState {
   final BaseFailure error;
 
-  HomePageFailureState({required this.error});
+  HomePageFailure({required this.error});
 }
 
 class HomeBloc extends ValueNotifierPlus<HomePageState> {
@@ -28,21 +28,21 @@ class HomeBloc extends ValueNotifierPlus<HomePageState> {
       : _repository = repository;
 
   factory HomeBloc.initial({required MovieRepository repository}) =>
-      HomeBloc(HomePageInitialState(), repository: repository);
+      HomeBloc(HomePageInitial(), repository: repository);
 
   void fetchMovies() {
-    value = HomePageInProgressState();
+    value = HomePageInProgress();
     _repository.getMovies().then((result) {
       result.match(
         (movies) {
-          value = HomePageSuccessState(movies: movies);
+          value = HomePageSuccess(movies: movies);
         },
         (error) {
-          value = HomePageFailureState(error: error);
+          value = HomePageFailure(error: error);
         },
       );
     }).catchError((error) {
-      value = HomePageFailureState(
+      value = HomePageFailure(
         error: MovieFailure(
           code: 'HomeBloc',
           description: 'fetchMovies.catchError: $error',

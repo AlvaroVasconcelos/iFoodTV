@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/app_colors.dart';
 import '../constants/app_typography.dart';
+import 'transparent_image.dart';
 
 class CardHorizontalDownloadWidget extends StatelessWidget with AppTypography {
   CardHorizontalDownloadWidget({
@@ -19,11 +20,17 @@ class CardHorizontalDownloadWidget extends StatelessWidget with AppTypography {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(
-        imageUrl,
-        width: 96,
-        height: 54,
-      ),
+      leading: imageUrl.isNotEmpty
+          ? Image.asset(
+              imageUrl,
+              width: 96,
+              height: 54,
+            )
+          : Image.memory(
+              kTransparentImage,
+              width: 96,
+              height: 54,
+            ),
       trailing: const Icon(
         Icons.download,
         color: AppColors.white,
