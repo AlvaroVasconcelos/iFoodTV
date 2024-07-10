@@ -23,7 +23,9 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
-      child: HomePage(),
+      builder: (context) {
+        return HomePage(bloc: context.of<HomeBloc>()!);
+      },
     );
   }
 }

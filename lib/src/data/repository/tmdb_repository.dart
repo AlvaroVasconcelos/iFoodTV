@@ -1,7 +1,6 @@
 import 'package:tmdb_api/tmdb_api.dart';
 
 import '../../domain/entity/movie.dart';
-import '../../domain/core/base_error.dart';
 import '../../domain/repository/movie_repository.dart';
 import '../../domain/core/result.dart';
 import '../adapter/movie_adapter.dart';
@@ -21,7 +20,7 @@ class TmdbRepository extends MovieRepository {
   TmdbRepository({required TmdbClient client}) : _client = client;
 
   @override
-  Future<Result<List<Movie>, BaseError>> getMovies() async {
+  Future<Result<List<Movie>, MovieError>> getMovies() async {
     final response = await _client.v3.discover.getMovies();
     final movies = MovieAdapter.fromJsonList(
       response['data'] as Map<String, dynamic>,
@@ -30,7 +29,7 @@ class TmdbRepository extends MovieRepository {
   }
 
   @override
-  Future<Result<Movie, BaseError>> getMovie(String id) async {
+  Future<Result<Movie, MovieError>> getMovie(String id) async {
     final response = await _client.v3.find.getById(id);
     final movie = MovieAdapter.fromJson(
       response['data'] as Map<String, dynamic>,
@@ -39,7 +38,7 @@ class TmdbRepository extends MovieRepository {
   }
 
   @override
-  Future<Result<List<Movie>, BaseError>> searchMovie(String term) async {
+  Future<Result<List<Movie>, MovieError>> searchMovie(String term) async {
     final response = await _client.v3.search.queryMovies(term);
     final movies = MovieAdapter.fromJsonList(
       response['data'] as Map<String, dynamic>,

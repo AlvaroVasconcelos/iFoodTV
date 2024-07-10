@@ -12,12 +12,23 @@ import '../widgets/button/vertical_button_widget.dart';
 import '../widgets/card_vertical_widget.dart';
 import '../widgets/logo/logo_large_lettermark_widget.dart';
 
-class HomePage extends StatelessWidget with AppTypography {
-  HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, required this.bloc});
+  final HomeBloc bloc;
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with AppTypography {
+  @override
+  void initState() {
+    super.initState();
+    widget.bloc.fetchMovies();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = ValueNotifierPlusProvider.of<HomeBloc>(context);
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -127,34 +138,26 @@ class HomePage extends StatelessWidget with AppTypography {
                 SizedBox(
                   height: 212,
                   child: ValueNotifierPlusBuilder<HomeBloc, HomePageState>(
-                      notifier: bloc,
+                      notifier: context.of<HomeBloc>()!,
                       builder: (context, state) {
                         return switch (state) {
                           HomePageInitialState() => const SizedBox.shrink(),
                           HomePageLoadingState() => const Center(
                               child: CircularProgressIndicator(),
                             ),
-                          HomePageLoadedState() => ListView(
+                          HomePageLoadedState() => ListView.separated(
                               padding: EdgeInsets.zero,
                               scrollDirection: Axis.horizontal,
-                              children: [
-                                CardVerticalWidget(
-                                  imageUrl: "assets/01carrousel.png",
+                              itemCount: state.movies.length,
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(width: 20),
+                              itemBuilder: (context, index) {
+                                final movie = state.movies[index];
+                                return CardVerticalWidget(
+                                  imageUrl: movie.thumbnail,
                                   onTap: () {},
-                                ),
-                                CardVerticalWidget(
-                                  imageUrl: "assets/02carrousel.png",
-                                  onTap: () {},
-                                ),
-                                CardVerticalWidget(
-                                  imageUrl: "assets/03carrousel.png",
-                                  onTap: () {},
-                                ),
-                                CardVerticalWidget(
-                                  imageUrl: "assets/01carrousel.png",
-                                  onTap: () {},
-                                ),
-                              ],
+                                );
+                              },
                             ),
                           HomePageErrorState() => Center(
                               child: Text(state.error.description),

@@ -13,7 +13,7 @@ class CardVerticalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Image.asset(
+      child: Image.network(
         imageUrl,
         width: 106,
         height: 152,

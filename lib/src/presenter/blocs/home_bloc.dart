@@ -39,7 +39,12 @@ class HomeBloc extends ValueNotifierPlus<HomePageState> {
         value = HomePageErrorState(error: error);
       });
     }).catchError((error) {
-      value = HomePageErrorState(error: error);
+      value = HomePageErrorState(
+        error: MovieError(
+          code: 'HomeBloc',
+          description: 'fetchMovies.catchError: $error',
+        ),
+      );
     });
   }
 }
