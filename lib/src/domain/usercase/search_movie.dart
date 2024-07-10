@@ -1,8 +1,8 @@
-import '../entity/movie.dart';
 import '../core/base_failure.dart';
-import '../repository/movie_repository.dart';
 import '../core/result.dart';
 import '../core/usecase.dart';
+import '../entity/movie.dart';
+import '../repository/movie_repository.dart';
 
 class SearchMovie implements Usercase<String> {
   final MovieRepository _repository;

@@ -1,7 +1,7 @@
-import '../entity/movie.dart';
 import '../core/base_failure.dart';
-import '../core/result.dart';
 import '../core/repository.dart';
+import '../core/result.dart';
+import '../entity/movie.dart';
 
 abstract class MovieRepository extends Repository {
   Future<Result<Movie, MovieFailure>> getMovie(String id);

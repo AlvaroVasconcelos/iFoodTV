@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ifoodtv/src/data/client/tmdb_client.dart';
-import 'package:ifoodtv/src/data/repository/tmdb_repository.dart';
-import 'package:ifoodtv/src/presenter/blocs/home_bloc.dart';
+import '../data/client/tmdb_client.dart';
+import '../data/repository/tmdb_repository.dart';
+import 'blocs/home_bloc.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:value_notifier_plus/value_notifier_plus.dart';
 
