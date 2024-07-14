@@ -361,10 +361,10 @@ packages:
     dependency: "direct main"
     description:
       name: value_notifier_plus
-      sha256: "27b1e16a7a00df10ece15b90bb9622bef7155b0b0730b862666c449edba104f6"
+      sha256: "326fff4fc371c0413cce5d7d6281689d0e689568c77420bf7a2aa02bd85bb9a7"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0+6"
+    version: "0.1.0+7"
   vector_math:
     dependency: transitive
     description:

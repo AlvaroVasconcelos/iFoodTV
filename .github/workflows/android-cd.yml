@@ -1,0 +1,58 @@
+name: "ANDROID - CD"
+ 
+on:
+  push:
+    branches: [ prod ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: ANDROID BUILD
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: /
+    steps:
+      - uses: actions/checkout@v4
+      - name: key.properties
+        shell: pwsh
+        env:
+          ANDROID_KEYPROPERTIES: ${{ secrets.ANDROID_KEYPROPERTIES }}
+        run: echo "$env:ANDROID_KEYPROPERTIES" > android/key.properties
+      - name: Keystore
+        env:
+          ANDROID_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE }}
+        run: |
+          echo "$env:$ANDROID_KEYSTORE" | base64 -di > android/app/key.pkcs12
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter build appbundle
+      - name: Upload App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: app_name
+          path: mobile/build/app/outputs/bundle/prodRelease/app-prod-release.aab
+          if-no-files-found: error
+          retention-days: 7
+
+  upload:
+    name: ANDROID DEPLOY 
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: App Bundle
+        uses: actions/download-artifact@v3
+        with:
+          name: app_name
+      - name: Upload para Google Play Console
+        uses: r0adkll/upload-google-play@v1.0.19
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_CNPMOBILE_KEY }}
+          packageName: com.app_name
+          releaseFiles: app-prod-release.aab
+          track: internal
+          status: draft
+
