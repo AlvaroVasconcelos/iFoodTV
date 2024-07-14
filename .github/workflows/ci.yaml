@@ -1,26 +1,50 @@
-name: ci
-
-concurrency:
-  group: $-$
-  cancel-in-progress: true
+name: CI
 
 on:
   pull_request:
-    branches:
-      - main
-
+    branches: [ "develop" ]
+    
 jobs:
-  semantic-pull-request:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
-
   build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
-    with:
-      flutter_channel: stable
+    # This job will run on ubuntu virtual machine
+    runs-on: ubuntu-latest
+    steps:
+    
+    - uses: actions/checkout@v1  
+    - name: Setup the flutter environment.
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable' # 'dev', 'alpha', default to: 'stable'
+        # flutter-version: '1.12.x' # you can also specify exact version of flutter
+    
+    - name: Get flutter dependencies.
+    - run: flutter pub get
+    
+    - name: Check for any formatting issues in the code.
+    - run: flutter format --set-exit-if-changed .
+    
+    - name: Statically analyze the Dart code for any errors.
+    - run: flutter analyze .
+    
+    - name: Run widget tests for our flutter project.
+    - run: flutter test --coverage
 
-  # spell-check:
-  #   uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
-  #   with:
-  #     includes: |
-  #       **/*.md
-  #     modified_files_only: false
+    - name: Setup LCOV
+      uses: hrishikesh-kadam/setup-lcov@v1
+    - name: Report code coverage
+      uses: zgosalvez/github-actions-report-lcov@v3
+      with:
+        coverage-files: coverage/lcov.info
+        minimum-coverage: 30
+        artifact-name: code-coverage-report
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        update-comment: true
+    
+    - name: Build apk.
+    - run: flutter build apk
+    
+    - name: Upload generated apk to the artifacts.
+    - uses: actions/upload-artifact@v1
+      with:
+        name: release-apk
+        path: build/app/outputs/apk/release/app-release.apk
