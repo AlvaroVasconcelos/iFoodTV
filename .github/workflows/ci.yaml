@@ -38,7 +38,7 @@ jobs:
         run: flutter analyze
 
       - name: Run widget tests
-        run: flutter test --coverage
+        run: flutter test --coverage test/
 
       - name: Set up LCOV
         uses: hrishikesh-kadam/setup-lcov@v1
