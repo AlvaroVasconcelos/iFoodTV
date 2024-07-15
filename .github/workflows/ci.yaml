@@ -1,0 +1,65 @@
+name: Continuous Integration
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    
+jobs:
+  semantic-pull-request:
+    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+
+  build:
+    name: CI Flutter Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Flutter environment
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Get Flutter dependencies
+        run: flutter pub get
+
+      - name: Check for formatting issues
+        run: dart format --set-exit-if-changed .
+
+      - name: Analyze Flutter code
+        run: flutter analyze .
+
+      - name: Run Widget tests
+        run: flutter test --coverage test/
+
+      - name: Set up LCOV
+        uses: hrishikesh-kadam/setup-lcov@v1
+
+      - name: Report code coverage
+        uses: zgosalvez/github-actions-report-lcov@v3
+        with:
+          coverage-files: coverage/lcov.info
+          minimum-coverage: 30
+          artifact-name: code-coverage-report
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          update-comment: true
+
+      - name: Build Android
+        run: fvm flutter build appbundle --flavor prod --dart-define FLAVOR=prod  
+
+      - name: Build iOS
+        run: fvm flutter build ipa --flavor prod --dart-define FLAVOR=prod  
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
