@@ -1,4 +1,4 @@
-name: CI
+name: Continuous Integration
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -46,8 +46,7 @@ jobs:
       - name: Report code coverage
         uses: zgosalvez/github-actions-report-lcov@v3
         with:
-          coverage-files: overage/lcov.info
-          working-directory: .
+          coverage-files: coverage/lcov.info
           minimum-coverage: 30
           artifact-name: code-coverage-report
           github-token: ${{ secrets.GITHUB_TOKEN }}
