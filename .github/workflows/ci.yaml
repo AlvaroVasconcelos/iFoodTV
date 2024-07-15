@@ -34,10 +34,10 @@ jobs:
       - name: Check for formatting issues
         run: dart format --set-exit-if-changed .
 
-      - name: Analyze Dart code
-        run: flutter analyze
+      - name: Analyze Flutter code
+        run: flutter analyze .
 
-      - name: Run widget tests
+      - name: Run Widget tests
         run: flutter test --coverage test/
 
       - name: Set up LCOV
