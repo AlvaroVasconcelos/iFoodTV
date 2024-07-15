@@ -1,4 +1,4 @@
-name: CI
+name: Continuous Integration
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -18,7 +18,7 @@ jobs:
 
   build:
     name: CI Flutter Build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -32,13 +32,13 @@ jobs:
         run: flutter pub get
 
       - name: Check for formatting issues
-        run: flutter format --set-exit-if-changed .
+        run: dart format --set-exit-if-changed .
 
-      - name: Analyze Dart code
-        run: flutter analyze
+      - name: Analyze Flutter code
+        run: flutter analyze .
 
-      - name: Run widget tests
-        run: flutter test --coverage
+      - name: Run Widget tests
+        run: flutter test --coverage test/
 
       - name: Set up LCOV
         uses: hrishikesh-kadam/setup-lcov@v1
@@ -52,8 +52,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           update-comment: true
 
-      - name: Build APK
-        run: flutter build apk
+      - name: Build Android
+        run: fvm flutter build appbundle --flavor prod --dart-define FLAVOR=prod  
+
+      - name: Build iOS
+        run: fvm flutter build ipa --flavor prod --dart-define FLAVOR=prod  
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v2
