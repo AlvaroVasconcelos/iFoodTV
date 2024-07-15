@@ -18,7 +18,7 @@ jobs:
 
   build:
     name: CI Flutter Build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -52,8 +52,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           update-comment: true
 
-      - name: Build APK
-        run: flutter build apk
+      - name: Build Android
+        run: fvm flutter build appbundle --flavor prod --dart-define FLAVOR=prod  
+
+      - name: Build iOS
+        run: fvm flutter build ipa --flavor prod --dart-define FLAVOR=prod  
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v2
